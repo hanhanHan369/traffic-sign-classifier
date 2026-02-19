@@ -101,9 +101,7 @@ if uploaded_file is not None:
     img_resized = image.resize((128, 128))
     img_array = tf.keras.preprocessing.image.img_to_array(img_resized)
     img_array = np.expand_dims(img_array, axis=0)
-    img_processed = tf.keras.applications.resnet_v2.preprocess_input(img_array)
-    
-    predictions = model.predict(img_processed)
+    predictions = model.predict(img_array)
     predicted_class_idx = np.argmax(predictions)
     confidence = np.max(predictions) * 100
     
