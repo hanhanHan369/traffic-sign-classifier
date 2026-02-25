@@ -63,6 +63,22 @@ st.markdown("""
         box-shadow: 0px 8px 24px rgba(0,0,0,0.06) !important;
     }
     
+            /* Add this into the <style> block of your 1_Classifier.py */
+    @keyframes fadeUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Animates the main container */
+    .block-container {
+        animation: fadeUp 0.8s ease forwards;
+    }
+    
+    /* Animates the results dynamically */
+    .stSuccess, h3 {
+        animation: fadeUp 0.5s ease forwards;
+    }
+    
     /* Hide the default Streamlit top menu (Optional, but looks much cleaner) */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
