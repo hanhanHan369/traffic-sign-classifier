@@ -7,66 +7,66 @@ st.set_page_config(page_title="Vision | Traffic Classifier", layout="centered")
 
 st.markdown("""
 <style>
+    /* Import Elegant Fonts from Google */
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap');
 
-    .stApp {
-        background-color: #F4F2EB; 
-        color: #4A443B;
+    /* Global Font Overrides */
+    html, body, [class*="css"] {
         font-family: 'Montserrat', sans-serif;
+        color: #4A443B;
     }
 
+    /* Elegant Headers */
     h1, h2, h3 {
-        font-family: 'Playfair Display', serif;
-        color: #4A443B;
-        text-align: center;
-        font-weight: 400;
-        letter-spacing: 1px;
+        font-family: 'Playfair Display', serif !important;
+        color: #4A443B !important;
+        text-align: center !important;
+        font-weight: 400 !important;
+        letter-spacing: 1px !important;
     }
 
     p {
-        font-family: 'Montserrat', sans-serif;
         text-align: center;
-        color: #6B655C;
+        color: #6B655C !important;
     }
 
+    /* Minimalist File Uploader Dropzone */
     [data-testid="stFileUploadDropzone"] {
-        background-color: #FFFFFF;
-        border: 1px solid #D1CDC4;
-        border-radius: 2px;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.03);
+        background-color: #FFFFFF !important;
+        border: 1px dashed #A3A58E !important; 
+        border-radius: 8px !important;
+        padding: 2rem !important;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.02) !important;
     }
 
+    /* Style the text inside the uploader */
+    .st-emotion-cache-1gcek56 {
+        color: #6B655C !important;
+    }
+
+    /* Elegant Button Styling */
     .stButton>button {
-        background-color: #A3A58E; 
-        color: white;
-        border-radius: 25px;
-        border: none;
-        padding: 10px 25px;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        font-size: 0.85rem;
-        transition: all 0.3s ease;
-        display: block;
-        margin: 0 auto; 
+        border-radius: 25px !important;
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 500 !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        font-size: 0.85rem !important;
+        border: 1px solid transparent !important;
+        display: block !important;
+        margin: 0 auto !important; 
     }
     
-    .stButton>button:hover {
-        background-color: #8C8E77; 
-        color: white;
-    }
-    
+    /* Clean Image Display */
     [data-testid="stImage"] img {
-        border-radius: 4px;
-        box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
+        border-radius: 8px !important;
+        box-shadow: 0px 8px 24px rgba(0,0,0,0.06) !important;
     }
     
-    .stSuccess {
-        background-color: #E8EAE3 !important;
-        color: #4A443B !important;
-        border: none !important;
-    }
+    /* Hide the default Streamlit top menu (Optional, but looks much cleaner) */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
