@@ -117,12 +117,41 @@ if uploaded_file is not None:
     img_resized = image.resize((128, 128))
     img_array = tf.keras.preprocessing.image.img_to_array(img_resized)
     img_array = np.expand_dims(img_array, axis=0)
-    predictions = model.predict(img_array)
-    predicted_class_idx = np.argmax(predictions)
-    confidence = np.max(predictions) * 100
+# Make Prediction
+    predictions = model.predict(img_array)[0] # Extract the 1D array of 10 probabilities
+    
+    # Get the indices of the top 3 highest probabilities
+    top_3_indices = np.argsort(predictions)[::-1][:3]
+    
+    # Extract the names and confidences for the top 3
+    top_3_classes = [CLASS_NAMES[i] for i in top_3_indices]
+    top_3_confidences = predictions[top_3_indices] * 100
     
     st.markdown("---")
     st.markdown("<h3>Analysis Complete</h3>", unsafe_allow_html=True)
     
-    st.markdown(f"<h1 style='color: #A3A58E; font-size: 3rem;'>{CLASS_NAMES[predicted_class_idx]}</h1>", unsafe_allow_html=True)
-    st.markdown(f"<p>Confidence Level: <b>{confidence:.1f}%</b></p>", unsafe_allow_html=True)
+    # --- DISPLAY TOP 1 (The Winner) ---
+    st.markdown(
+        f"""
+        <div style="text-align: center;">
+            <h1 style='color: #A3A58E; font-size: 3.5rem; margin-bottom: 0px;'>{top_3_classes[0]}</h1>
+            <p style='font-size: 1.2rem; color: #4A443B; margin-top: 5px;'>Confidence: <b>{top_3_confidences[0]:.1f}%</b></p>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
+    
+    # --- DISPLAY #2 and #3 (Alternative Probabilities) ---
+    # We use a subtle dividing line and softer colors to maintain the editorial aesthetic
+    st.markdown("<hr style='border: 0.5px solid #D1CDC4; width: 40%; margin: 1.5rem auto;'>", unsafe_allow_html=True)
+    
+    st.markdown(
+        f"""
+        <div style="text-align: center; color: #6B655C;">
+            <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Alternative Matches</p>
+            <p style="margin: 4px; font-size: 1.05rem;"><b>2. {top_3_classes[1]}</b> &mdash; {top_3_confidences[1]:.1f}%</p>
+            <p style="margin: 4px; font-size: 1.05rem;"><b>3. {top_3_classes[2]}</b> &mdash; {top_3_confidences[2]:.1f}%</p>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
