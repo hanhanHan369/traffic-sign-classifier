@@ -71,8 +71,17 @@ st.markdown("""
         color: #6B655C;
     }
 
-    /* Hide standard headers */
-    header {visibility: hidden;}
+/* Hide standard headers but explicitly keep the sidebar arrow visible! */
+    header {
+        background-color: transparent !important;
+        border-bottom: none !important; 
+    }
+    
+    /* Force the sidebar toggle arrow to always show */
+    [data-testid="collapsedControl"] {
+        visibility: visible !important;
+        color: #4A443B !important; /* Matches your earthy charcoal text color */
+    }
 </style>
 """, unsafe_allow_html=True)
 
