@@ -82,7 +82,7 @@ st.markdown("""
     /* Hide the default Streamlit top menu (Optional, but looks much cleaner) */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    header {visibility: hidden;}
+    header {background-color: transparent !important;}
 </style>
 """, unsafe_allow_html=True)
 
